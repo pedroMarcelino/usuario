@@ -6,9 +6,11 @@ import com.marcelino.usuario.business.dto.UsuarioDTO;
 import com.marcelino.usuario.infrastructure.entity.Endereco;
 import com.marcelino.usuario.infrastructure.entity.Telefone;
 import com.marcelino.usuario.infrastructure.entity.Usuario;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 public class UsuarioConverter {
 
     public Usuario paraUsuario (UsuarioDTO usuarioDTO){

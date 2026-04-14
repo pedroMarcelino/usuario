@@ -1,6 +1,7 @@
 package com.marcelino.usuario.infrastructure.repository;
 
-import com.marcelino.aprendendo_spring.infrastructure.entity.Endereco;
+
+import com.marcelino.usuario.infrastructure.entity.Endereco;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
