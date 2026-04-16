@@ -10,8 +10,9 @@ import lombok.*;
 @Builder
 public class EnderecoDTO {
 
+    private Long id;
     private String rua;
-    private long numero;
+    private Long numero;
     private String bairro;
     private String complemento;
     private String cidade;

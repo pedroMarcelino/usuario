@@ -13,13 +13,13 @@ import lombok.*;
 public class Endereco {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @Column(name = "rua")
     private String rua;
 
     @Column(name = "numero")
-    private long numero;
+    private Long numero;
 
     @Column(name = "bairro")
     private String bairro;
