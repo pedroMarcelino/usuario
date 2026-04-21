@@ -4,8 +4,8 @@ import com.marcelino.usuario.business.converter.UsuarioConverter;
 import com.marcelino.usuario.business.dto.EnderecoDTO;
 import com.marcelino.usuario.business.dto.TelefoneDTO;
 import com.marcelino.usuario.business.dto.UsuarioDTO;
-import com.marcelino.usuario.infrastructure.ConflictException;
-import com.marcelino.usuario.infrastructure.ResourceNotFoundException;
+import com.marcelino.usuario.infrastructure.Exceptions.ConflictException;
+import com.marcelino.usuario.infrastructure.Exceptions.ResourceNotFoundException;
 import com.marcelino.usuario.infrastructure.entity.Endereco;
 import com.marcelino.usuario.infrastructure.entity.Telefone;
 import com.marcelino.usuario.infrastructure.entity.Usuario;
@@ -102,5 +102,26 @@ public class UsuarioService {
         return usuarioConverter.paraTelefoneDTO(telefoneRepository.save(telefone));
 
 
+    }
+
+
+    public EnderecoDTO cadastraEndereco (String token, EnderecoDTO dto ){
+        String email = jwtUtil.extractUsername(token.substring(7));
+        Usuario usuario = usuarioRepository.findByEmail(email).orElseThrow(()->
+                new ResourceNotFoundException("email nao encontrado; cadastraEndereco(); email: " + email));
+
+        Endereco endereco = usuarioConverter.paraEnderecoEntity(dto, usuario.getId());
+        Endereco enderecoEntity = enderecoRepository.save(endereco);
+        return usuarioConverter.paraEnderecoDTO(enderecoEntity);
+    }
+
+    public TelefoneDTO cadastraTelefone (String token, TelefoneDTO dto ){
+        String email = jwtUtil.extractUsername(token.substring(7));
+        Usuario usuario = usuarioRepository.findByEmail(email).orElseThrow(()->
+                new ResourceNotFoundException("email nao encontrado; cadastraEndereco(); email: " + email));
+
+        Telefone telefone = usuarioConverter.paraTelefoneEntity(dto, usuario.getId());
+        Telefone telefoneEntity = telefoneRepository.save(telefone);
+        return usuarioConverter.paraTelefoneDTO(telefoneEntity);
     }
 }

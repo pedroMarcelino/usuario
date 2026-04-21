@@ -1,4 +1,4 @@
-package com.marcelino.usuario.infrastructure;
+package com.marcelino.usuario.infrastructure.Exceptions;
 
 public class ConflictException extends RuntimeException{
     public ConflictException (String mensagem){
